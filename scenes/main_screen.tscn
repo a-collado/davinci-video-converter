@@ -1,0 +1,58 @@
+[gd_scene load_steps=2 format=3 uid="uid://l6lrqm2apmxm"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_jb8lg"]
+
+[node name="Main Screen" type="Node2D" node_paths=PackedStringArray("intputDialog", "outputDialog", "startButton")]
+position = Vector2(5, -2)
+script = ExtResource("1_jb8lg")
+intputDialog = NodePath("InputDialog")
+outputDialog = NodePath("OutputDialog")
+acceptedExtensions = PackedStringArray("MOV")
+startButton = NodePath("StartButton")
+
+[node name="InputDialog" type="FileDialog" parent="."]
+title = "Open a Directory"
+ok_button_text = "Select Current Folder"
+dialog_hide_on_ok = true
+file_mode = 2
+access = 2
+use_native_dialog = true
+
+[node name="OutputDialog" type="FileDialog" parent="."]
+title = "Open a Directory"
+ok_button_text = "Select Current Folder"
+file_mode = 2
+access = 2
+use_native_dialog = true
+
+[node name="InputButton" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Seleccionar input"
+
+[node name="OutputButton" type="Button" parent="."]
+offset_left = 214.0
+offset_right = 367.0
+offset_bottom = 31.0
+text = "Seleccionar output"
+
+[node name="SettingsButton" type="Button" parent="."]
+offset_left = 1.0
+offset_top = 64.0
+offset_right = 71.0
+offset_bottom = 95.0
+text = "Ajustes"
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 215.0
+offset_top = 67.0
+offset_right = 291.0
+offset_bottom = 98.0
+disabled = true
+text = "Empezar"
+
+[connection signal="dir_selected" from="InputDialog" to="." method="_on_input_dialog_dir_selected"]
+[connection signal="dir_selected" from="OutputDialog" to="." method="_on_output_dialog_dir_selected"]
+[connection signal="pressed" from="InputButton" to="." method="_on_input_button_pressed"]
+[connection signal="pressed" from="OutputButton" to="." method="_on_output_button_pressed"]
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
